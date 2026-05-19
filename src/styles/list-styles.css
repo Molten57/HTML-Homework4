@@ -1,0 +1,85 @@
+#input-container h1 {
+    font-size: 64px;
+    text-shadow: 2px 2px gray;
+    text-align: center;
+    background-color: #eaeaea;
+    margin: 0 0 32px 0;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+
+/*
+    ---------------------------------
+             Styles for inputs
+    ---------------------------------
+*/
+#input-container {
+    text-align: center;
+    gap: 10px;
+}
+
+input {
+    width: 80%;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    font-size: 32px;
+}
+
+#input-container button {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 100px;
+    background-color: #c5c5c5;
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+/*
+    ---------------------------------
+           Styles for Movie List
+    ---------------------------------
+*/
+:root {
+    --img-width: 250px;
+    --img-height: 300px;
+}
+
+#movie-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--img-width), 1fr));
+    gap: 10px;
+}
+
+#movie-container img {
+    width: var(--img-width);
+    height: var(--img-height);
+    margin: 5px;
+}
+
+/*
+    ---------------------------------
+            Styles for Movie
+    ---------------------------------
+*/
+.movie {
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.movie h2 {
+    text-align: center;
+    font-size: 16px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 200px;
+
+    color: black;
+}
