@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import '../styles/list-styles.css'
 import '../styles/styles.css'
@@ -10,38 +10,42 @@ function MovieList() {
     const [movies, setMovies] = useState([])
 
     const handleSearch = () => {
+        const search = document.getElementById('search').value;
+
         if (search.length > 0) {
-            fetchMovies();
-            setSearch("");
+            setSearch(search);
         }
     }
 
-    const fetchMovies = async () => {
-        setMovies([]);
+    useEffect(() => {
+        const fetchMovies = async () => {
+            setMovies([]);
 
-        const res = await fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=${search}&type=movie`);
-        const data = await res.json();
+            const res = await fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=${search}&type=movie`);
+            const data = await res.json();
 
-        if (data.Response === "True") {
-            const movies = [];
+            if (data.Response === "True") {
+                const movies = [];
 
-            data.Search.forEach(movie => {
-                movies.push({ title: movie.Title, poster: movie.Poster });
-            })
+                data.Search.forEach(movie => {
+                    movies.push({ title: movie.Title, poster: movie.Poster });
+                })
 
-            setMovies(movies);
+                setMovies(movies);
+            }
         }
-    }
+
+        fetchMovies()
+    }, [search])
 
     return (
         <>
             <div id='input-container'>
                 <h1>Welcome to the Movie Database!</h1>
                 <input
+                    id="search"
                     type={"text"}
-                    value={search}
                     placeholder={"Search for a movie..."}
-                    onChange={(e) => setSearch(e.target.value)}
                 />
                 <button onClick={handleSearch}>Search</button>
             </div>

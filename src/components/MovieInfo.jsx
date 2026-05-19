@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import '../styles/info-styles.css'
 
 function MovieInfo() {
+    const apiKey = import.meta.env.VITE_OMBD_API_KEY;
+
     const {title} = useParams();
     const [movie, setMovie] = useState({});
 
     useEffect(() => {
-        const apiKey = import.meta.env.VITE_OMBD_API_KEY;
-
         const fetchData = async () => {
             const res = await fetch(`https://omdbapi.com/?apikey=${apiKey}&t=${title}`);
             const data = await res.json();
